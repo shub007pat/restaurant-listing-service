@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /FoodDeliveryApp/restaurant-listing-service/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
