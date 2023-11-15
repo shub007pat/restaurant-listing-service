@@ -21,7 +21,7 @@ $request = explode('/', trim($path, '/'));
 $db = new Database();
 
 // Retrieve restaurants
-if ($method === 'GET' && $request[1] === 'restaurants' && isset($_GET['id'])) {
+if ($method === 'GET' && $request[0] === 'restaurants' && isset($_GET['id'])) {
     // To get the restaurant details, pass the id as a query parameter
     $id = isset($_GET['id']) ? $_GET['id'] : null;
     
@@ -32,7 +32,7 @@ if ($method === 'GET' && $request[1] === 'restaurants' && isset($_GET['id'])) {
         // Return an error or handle the case where id is missing
         echo json_encode(array('error' => 'Restaurant ID is missing'));
     }
-} else if ($method == 'GET' && $request[1] === 'restaurants') {
+} else if ($method == 'GET' && $request[0] === 'restaurants') {
     $restaurants = $db->getRestaurants();
     echo json_encode($restaurants);
 } elseif ($method == 'POST' && $request[1] === 'restaurants') { // Add a new restaurant

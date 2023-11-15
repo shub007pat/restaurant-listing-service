@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restaurant-listing-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: restaurant-listing-service
+  template:
+    metadata:
+      labels:
+        app: restaurant-listing-service
+    spec:
+      containers:
+        - name: restaurant-listing-service
+          image: shub007pat/restaurant-listing-service
+          ports:
+            - containerPort: 80
