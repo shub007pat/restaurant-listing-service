@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  user-db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: 'restaurant_db'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'password'
+    ports:
+      - "3307:3306"
+    volumes:
+      - restaurant-db-data:/var/lib/mysql
+  user-service:
+    build: ./path/to/restaurant-listing-service
+    depends_on:
+      - restaurant-db
+    ports:
+      - "8001:80"
+    environment:
+      DB_HOST: restaurant-db
+      DB_NAME: restaurant_db
+      DB_USER: root
+      DB_PASS: password
+volumes:
+  user-db-data:
